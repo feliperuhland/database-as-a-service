@@ -206,7 +206,7 @@ def database_parameters(request, context, database):
     if request.method == 'POST':
         if 'edit_parameters' in request.POST:
             form_status = EDITABLE
-        elif 'calcel_edit_parameters' in request.POST:
+        elif 'cancel_edit_parameters' in request.POST:
             form_status = PROTECTED
         elif 'retry_update_parameters' in request.POST:
             form_status = TASK_ERROR
@@ -298,6 +298,10 @@ def database_parameters(request, context, database):
             "applied_on_database": applied_on_database,
             "reset_default_value": reset_default_value,
             "editable_parameter": editable_parameter,
+            "parameter_type": topology_parameter.parameter_type,
+            "allowed_values": topology_parameter.allowed_values,
+            "description": topology_parameter.description,
+            "engine_type": database.engine.engine_type.name,
         }
         form_database_parameters.append(database_parameter)
 
